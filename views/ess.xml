@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <record id="mrp_production_form_cus2" model="ir.ui.view">
+        <field name="name">mrp.production.form.cus2</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+        <field name="arch" type="xml">
+            <button name="button_plan" position="after">
+                <button name="cancel_workorders" states='planned,progress' type="object" string="Cancel Workorders" />
+                <button name="new_picking" type="object" string="New Picking" />
+                <!-- <button name="delete_workorders" states='planned' attrs="{'invisible': [('cancel_count', '!=', 1)]}" type="object" string="Delete Workorders" />
+                <button name="delete_stockmove" states='planned' attrs="{'invisible': [('cancel_count', '!=', 0)]}" type="object" string="Delete Stock Move" /> -->
+            </button>
+            <button name="action_view_mo_delivery" position="replace">
+                <button type="object" name="action_view_mo_delivery" class="oe_stat_button" icon="fa-truck" attrs="{'invisible': [('delivery_count', '=', 0)]}" groups="base.group_user"
+                context="{'default_location_id': 12,'default_location_dest_id': 16,'default_picking_type_id':6,'default_origin':name}">
+                    <field name="delivery_count" widget="statinfo" string="Picking"/>
+                </button>
+            </button>
+
+            <!-- <xpath expr="//field[@name='product_id']" position="after">
+                <field name="cancel_count" invisible="1"/>
+            </xpath> -->
+            
+        </field>
+    </record>
+
+    <!-- <record id="stock_picking_form_cus2" model="ir.ui.view">
+        <field name="name">stock.picking.form.cus2</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+
+            <button name="action_view_mo_delivery" position="replace">
+                <button type="object" name="action_view_mo_delivery" class="oe_stat_button" icon="fa-truck" attrs="{'invisible': [('delivery_count', '=', 0)]}" groups="base.group_user"
+                context="{'default_location_id': 12,'default_location_dest_id': 16,'default_picking_type_id':6,'default_origin':name}">
+                    <field name="delivery_count" widget="statinfo" string="Picking"/>
+                </button>
+            </button>
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="mrpid" invisible="1"/>
+                <field name="mrpid_check" invisible="1"/>
+            </xpath>
+            
+        </field>
+    </record> -->
+
+
+    <!-- <record model='ir.ui.view' id='stock_picking_document_tree_view'>
+        <field name="name">stock.picking.document.tree</field>
+        <field name="model">stock.picking</field>
+        <field name="arch" type="xml">
+            <tree decoration-info="state == 'draft'" decoration-muted="state == 'cancel'" decoration-danger="state not in ('cancel', 'done') and scheduled_date &lt; current_date" string="Picking list">
+                <field name="name"/>
+                <field name="location_dest_id" groups="stock.group_stock_multi_locations"/>
+                <field name="partner_id"/>
+                <field name="date" invisible="1"/>
+                <field name="scheduled_date"/>
+                <field name="origin"/>
+                <field name="group_id" invisible="1"/>
+                <field name="backorder_id"/>
+                <field name="state"/>
+                <field name="priority" invisible="1"/>
+                <field name="picking_type_id" invisible="1"/>
+            </tree>
+        </field>
+    </record> -->
+
+    
+
+
+    
+</odoo>
+
